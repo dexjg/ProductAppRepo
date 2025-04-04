@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "3ffe7e93-0893-4fb6-824b-1e48242333c3",
+		"name": "productsapp-automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43658116",
+		"_collection_link": "https://krenkomobboss.postman.co/workspace/Krenko-Mob-Boss's-Workspace~3872d916-fd65-4e04-8e4f-4038b7549e5a/collection/43658116-3ffe7e93-0893-4fb6-824b-1e48242333c3?action=share&source=collection_link&creator=43658116"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.test(\"value of [0].Id to be 1\", () => {pm.expect(jsonData[0].Id).to.equal(1)});\r",
+							"pm.test(\"response to be 200 OK\", () => {pm.response.to.have.status(200)});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44329/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44329",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"console.log(responseBody);\r",
+							"\r",
+							"pm.test(\"Returned product has the correct ID\", () => {\r",
+							"    pm.expect(jsonData.Id).to.equal(1);\r",
+							"});\r",
+							"\r",
+							"// Test that product name is not empty\r",
+							"pm.test(\"Product name is present\", () => {\r",
+							"    pm.expect(jsonData.Name).to.be.a(\"string\").and.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"// Test that product price is greater than zero\r",
+							"pm.test(\"Product price is valid\", () => {\r",
+							"    pm.expect(jsonData.Price).to.be.a(\"number\").and.be.above(0);\r",
+							"});\r",
+							"\r",
+							"// Test that product category exists\r",
+							"pm.test(\"Product description exists\", () => {\r",
+							"    pm.expect(jsonData.Category).to.be.a(\"string\").and.not.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44329/api/products/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44329",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
