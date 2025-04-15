@@ -12,7 +12,7 @@ namespace ProductsApp.Controllers
         Product[] products = new Product[]
         {
             new Product { Id = 1, Name = "clam chowder", Category = "clama", Price = 2 },
-            new Product { Id = 2, Name = "clam hammer for smashing clams", Category = "clam tools", Price = 65 },
+            new Product { Id = 2, Name = "crab hammer for smashing crabs", Category = "tools", Price = 65 },
             new Product { Id = 3, Name = "clammy the clam: inflatable mascot", Category = "necessities", Price = 999 }
         };
         public ProductsController()
